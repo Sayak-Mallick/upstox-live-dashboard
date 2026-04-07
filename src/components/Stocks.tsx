@@ -121,47 +121,74 @@ export default function Stocks() {
   ];
 
   return (
-    <div className="min-h-screen bg-dashboard-dark p-6 text-white">
-      <div className="max-w-3xl mx-auto bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden">
-        {/* Adjusted Grid to 4 Columns for the Graph */}
-        <div className="grid grid-cols-4 p-4 bg-gray-800/50 text-xs font-bold uppercase tracking-wider text-gray-400">
-          <div>Symbol</div>
-          <div className="text-center">Trend</div>
-          <div className="text-right">Price</div>
-          <div className="text-right">Change</div>
+    <div className="min-h-screen bg-dashboard-dark text-slate-200 p-6">
+      <div className="max-w-4xl mx-auto">
+        {/* Header with Live Status */}
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl font-bold tracking-tight text-white">
+            Market Watch
+          </h1>
+          <div className="flex items-center gap-2 bg-upstox-green/10 px-3 py-1 rounded-full border border-upstox-green/20">
+            <div className="w-2 h-2 bg-upstox-green rounded-full animate-pulse" />
+            <span className="text-[10px] font-bold text-upstox-green uppercase">
+              Live Feed
+            </span>
+          </div>
+
+          {/* Stock List */}
+          <div className="grid gap-2">
+            {mockStocks.map((stock) => {
+              const isPositive = stock.change >= 0;
+
+              return (
+                <div
+                  key={stock.id}
+                  // UTILIZING CUSTOM ANIMATION: Logic to trigger flash on price change
+                  className={`grid grid-cols-4 items-center p-4 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all 
+                  ${stock.id === 1 ? "animate-flash-green" : ""} 
+                `}
+                >
+                  {/* Symbol Info */}
+                  <div className="flex flex-col">
+                    <span className="text-white font-semibold tracking-wide">
+                      {stock.symbol}
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-medium">
+                      EQ | NSE
+                    </span>
+                  </div>
+
+                  {/* Graph Utilization */}
+                  <div className="flex justify-center">
+                    <StockTrend
+                      data={stock.trend}
+                      color={
+                        isPositive
+                          ? "var(--color-upstox-green)"
+                          : "var(--color-upstox-red)"
+                      }
+                    />
+                  </div>
+
+                  {/* Price - Using Monospace for stability */}
+                  <div className="text-right font-mono text-white text-lg">
+                    ₹{stock.price}
+                  </div>
+
+                  {/* Change Percentage */}
+                  <div
+                    className={`text-right font-bold text-sm ${
+                      isPositive ? "text-upstox-green" : "text-upstox-red"
+                    }`}
+                  >
+                    {isPositive ? "+" : ""}
+                    {stock.change}%
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-
-        {mockStocks.map((stock) => {
-          const isPositive = stock.change >= 0;
-          const brandColor = isPositive ? "#00d09c" : "#eb5b3c";
-
-          return (
-            <div
-              key={stock.id}
-              className="grid grid-cols-4 items-center p-4 border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
-            >
-              <div className="font-semibold text-gray-100">{stock.symbol}</div>
-
-              {/* The Graph Column */}
-              <div className="flex justify-center">
-                <StockTrend data={stock.trend} color={brandColor} />
-              </div>
-
-              <div className="text-right font-mono text-gray-100">
-                ₹{stock.price}
-              </div>
-
-              <div
-                className={`text-right font-medium ${
-                  isPositive ? "text-upstox-green" : "text-upstox-red"
-                }`}
-              >
-                {isPositive ? "+" : ""}
-                {stock.change}%
-              </div>
-            </div>
-          );
-        })}
       </div>
     </div>
   );
