@@ -1,5 +1,3 @@
-// services/getWsUrl.ts
-
 export const fetchWsUrl = async (token: string) => {
   const res = await fetch(`http://localhost:5000/ws-url?token=${token}`);
 
