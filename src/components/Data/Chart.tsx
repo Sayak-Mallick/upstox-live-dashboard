@@ -23,14 +23,28 @@ const Chart = () => {
   }, []);
 
   useEffect(() => {
-    if (!seriesRef.current) return;
+    if (!seriesRef.current || trades.length === 0) return;
 
-    const data = trades.map((t) => ({
-      time: (Math.floor(t.time / 1000)) as Time,
-      value: t.price,
+    // trades are stored newest-first; lightweight-charts needs ascending order
+    const sorted = [...trades].sort((a, b) => a.time - b.time);
+
+    // Deduplicate by time (keep last occurrence for each second)
+    const seen = new Map<number, number>();
+    for (const t of sorted) {
+      const key = Math.floor(t.time / 1000);
+      seen.set(key, t.price);
+    }
+
+    const data = Array.from(seen.entries()).map(([time, value]) => ({
+      time: time as Time,
+      value,
     }));
 
-    seriesRef.current.setData(data);
+    try {
+      seriesRef.current.setData(data);
+    } catch (e) {
+      console.warn("Chart setData error:", e);
+    }
   }, [trades]);
 
   return <div ref={chartRef} />;

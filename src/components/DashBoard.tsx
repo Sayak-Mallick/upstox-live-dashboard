@@ -1,3 +1,4 @@
+import React from "react";
 import { useCryptoStream } from "../hooks/useCryptoStream";
 import PriceCard from "./Data/PriceCard";
 import TradeFeed from "./Data/TradeFeed";
@@ -13,14 +14,13 @@ const Dashboard = () => {
   return (
     <Container sx={{ mt: 4 }}>
       <Grid container spacing={3}>
-        {" "}
-        <Grid item xs={12}>
+        <Grid size={12}>
           <PriceCard />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <MemoizedChart />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <MemoizedTradeFeed />
         </Grid>
       </Grid>
