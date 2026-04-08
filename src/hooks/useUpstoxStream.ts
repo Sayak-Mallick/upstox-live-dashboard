@@ -50,11 +50,6 @@ function extractLTPC(feed: Feed): LTPC | undefined {
   );
 }
 
-function shortKey(key: string): string {
-  // "MCX_FO|559933" → "559933", "NSE_FO|Nifty 50" → "Nifty 50"
-  return key.split("|")[1] || key;
-}
-
 export const useUpstoxStream = (url?: string): StreamState => {
   const [state, setState] = useState<StreamState>({
     ticks: {},
@@ -150,6 +145,7 @@ export const useUpstoxStream = (url?: string): StreamState => {
   useEffect(() => {
     if (!url) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setState((prev) => ({ ...prev, isConnected: false }));
     upstoxWS.connect(url, handleMessage);
 

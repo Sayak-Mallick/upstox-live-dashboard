@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/purity */
-// components/MarketDashboard.tsx
 import { useState } from "react";
 import {
   LineChart,
