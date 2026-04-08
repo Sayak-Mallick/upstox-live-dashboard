@@ -65,8 +65,6 @@ src/
 cd backend
 npm install express cors
 
-# Frontend
-npm install recharts
 ```
 
 > **No protobuf library needed** — decoder is hand-written from the V3 proto schema.
