@@ -1,5 +1,31 @@
-export const DashBoard = () => {
+import { useCryptoStream } from "../hooks/useCryptoStream";
+import PriceCard from "./Data/PriceCard";
+import TradeFeed from "./Data/TradeFeed";
+import Chart from "./Data/Chart";
+import { Container, Grid } from "@mui/material";
+
+const MemoizedChart = React.memo(Chart);
+const MemoizedTradeFeed = React.memo(TradeFeed);
+
+const Dashboard = () => {
+  useCryptoStream();
+
   return (
-    <div>DashBoard</div>
-  )
-}
+    <Container sx={{ mt: 4 }}>
+      <Grid container spacing={3}>
+        {" "}
+        <Grid item xs={12}>
+          <PriceCard />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <MemoizedChart />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <MemoizedTradeFeed />
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
+
+export default Dashboard;
