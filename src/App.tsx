@@ -1,10 +1,14 @@
 import "./App.css";
-import Stocks from "./components/Stocks";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import Dashboard from "./components/DashBoard";
 
 function App() {
   return (
     <>
-      <Stocks />
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
     </>
   );
 }
