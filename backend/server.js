@@ -9,7 +9,8 @@ app.use(express.json());
 
 const CLIENT_ID = "aa44ca15-14e2-4fd1-9b4b-159cd0203647";
 const CLIENT_SECRET = "gszqvjj7me";
-const REDIRECT_URI = "http://localhost:5173/";
+const REDIRECT_URI =
+  "http://localhost:5173/ || https://upstox-live-dashboard.vercel.app/";
 const state = "sayak";
 
 app.get("/login-url", (req, res) => {
