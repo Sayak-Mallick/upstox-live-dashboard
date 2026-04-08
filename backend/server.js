@@ -1,16 +1,16 @@
-// backend/server.js
-
 const express = require("express");
 const cors = require("cors");
+
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const CLIENT_ID = "aa44ca15-14e2-4fd1-9b4b-159cd0203647";
-const CLIENT_SECRET = "gszqvjj7me";
-const REDIRECT_URI = "http://localhost:5173/";
-const state = "sayak";
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const state = process.env.STATE;
 
 app.get("/login-url", (req, res) => {
   const url = `https://api.upstox.com/v2/login/authorization/dialog?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${state}`;

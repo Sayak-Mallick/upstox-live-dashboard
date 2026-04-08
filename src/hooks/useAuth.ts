@@ -11,9 +11,7 @@ export const useAuth = () => {
     const initAuth = async () => {
       const code = getAuthCode();
       if (!code) return;
-
-      console.log("🔑 Auth Code:", code);
-
+      
       // Clean URL so code isn't re-used on refresh
       const url = new URL(window.location.href);
       url.searchParams.delete("code");

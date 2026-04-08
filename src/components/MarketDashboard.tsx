@@ -90,8 +90,6 @@ function PriceChart({ tick }: { tick: TickData }) {
     label: timeLabel(h.time),
   }));
 
-  console.log(tick, "ssssss");
-
   return (
     <ResponsiveContainer width="100%" height={192}>
       <LineChart
