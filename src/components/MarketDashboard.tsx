@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/purity */
 // components/MarketDashboard.tsx
 import { useState } from "react";
@@ -90,6 +91,8 @@ function PriceChart({ tick }: { tick: TickData }) {
     label: timeLabel(h.time),
   }));
 
+  console.log(tick, "ssssss");
+
   return (
     <ResponsiveContainer width="100%" height={192}>
       <LineChart
@@ -120,7 +123,7 @@ function PriceChart({ tick }: { tick: TickData }) {
             fontSize: 11,
             color: "#fff",
           }}
-          formatter={(v: number) => [fmt(v), "Price"]}
+          formatter={(v: any) => [fmt(v), "Price"]}
           labelFormatter={(l) => `Time: ${l}`}
         />
         <ReferenceLine
