@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import LoginButton from "./components/LoginButton";
 import { useAuth } from "./hooks/useAuth";
 import { fetchWsUrl } from "./services/getWsUrl";
-import { useUpstoxStream } from "./hooks/useUpStoxStream";
+import { useUpstoxStream } from "./hooks/useUpstoxStream";
 import { logout } from "./utils/auth";
 
 export default function App() {
@@ -96,7 +96,7 @@ function ConnectedState({ onLogout }: { onLogout: () => void }) {
   return (
     <div className="w-full max-w-sm animate-fade-in">
       {/* Status card */}
-      <div className="border border-white/8 bg-white/[0.02] rounded-lg p-6 backdrop-blur-sm">
+      <div className="border border-white/8 bg-white/2 rounded-lg p-6 backdrop-blur-sm">
         <div className="flex items-start justify-between mb-6">
           <div>
             <h2 className="text-sm font-semibold text-white/90 tracking-wide">
@@ -125,7 +125,7 @@ function ConnectedState({ onLogout }: { onLogout: () => void }) {
           ].map(({ label, value }) => (
             <div
               key={label}
-              className="bg-white/[0.02] border border-white/5 rounded-md px-3 py-2.5"
+              className="bg-white/2 border border-white/5 rounded-md px-3 py-2.5"
             >
               <p className="text-[9px] tracking-widest text-white/25 uppercase mb-1">
                 {label}
@@ -138,7 +138,7 @@ function ConnectedState({ onLogout }: { onLogout: () => void }) {
         {/* Logout */}
         <button
           onClick={onLogout}
-          className="w-full group flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-white/8 bg-white/[0.02] hover:bg-red-950/30 hover:border-red-900/50 transition-all duration-200 text-xs text-white/40 hover:text-red-400 tracking-widest uppercase"
+          className="w-full group flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-white/8 bg-white/2 hover:bg-red-950/30 hover:border-red-900/50 transition-all duration-200 text-xs text-white/40 hover:text-red-400 tracking-widest uppercase"
         >
           <svg
             className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
